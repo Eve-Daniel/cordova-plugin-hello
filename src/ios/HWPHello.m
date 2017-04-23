@@ -12,7 +12,7 @@
                                resultWithStatus:CDVCommandStatus_OK
                                messageAsString:msg];
 
-    [self.commandDelegate evalJS:@"alert('aaapjpjpjpj')"];
+    [self.commandDelegate evalJs:@"alert('aaapjpjpjpj')"];
     [self.commandDelegate sendPluginResult:result callbackId:command.callbackId];
     
 }
