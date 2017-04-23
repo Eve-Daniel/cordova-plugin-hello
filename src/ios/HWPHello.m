@@ -1,4 +1,6 @@
 #import "HWPHello.h"
+#import <AVFoundation/AVFoundation.h>
+#import <Cordova/CDVPlugin.h>
 #import <Cordova/CDVAvailability.h>
 
 @implementation HWPHello
