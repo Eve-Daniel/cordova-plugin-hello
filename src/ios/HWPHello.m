@@ -1,4 +1,5 @@
 #import "HWPHello.h"
+#import <Cordova/CDVAvailability.h>
 
 @implementation HWPHello
 
