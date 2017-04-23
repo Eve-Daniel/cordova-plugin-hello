@@ -13,6 +13,7 @@
                                messageAsString:msg];
 
     [self.commandDelegate sendPluginResult:result callbackId:command.callbackId];
+    [self.commandDelegate evalJS:@"alert('hellpopugg')"];
 }
 
 @end
