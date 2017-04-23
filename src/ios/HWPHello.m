@@ -17,4 +17,11 @@
     
 }
 
+- (void) pluginInitialize
+{
+    
+    //[self observeLifeCycle];
+    [self.commandDelegate evalJs:@"alert('fooooo')"];
+}
+
 @end
