@@ -31,4 +31,8 @@
     [self.commandDelegate evalJs:@"alert('foo-install')"];
 }
 
+- (void) handleAudioSessionInterruption:(NSNotification*)notification{
+    
+}
+
 @end
