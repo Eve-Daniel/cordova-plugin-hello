@@ -35,7 +35,14 @@
 }
 
 - (void) handleAudioSessionInterruption:(NSNotification*)notification{
-    
+    int interruptionType = [notification.userInfo[AVAudioSessionInterruptionTypeKey] intValue];
+    if (interruptionType == AVAudioSessionInterruptionTypeBegan) {
+    [self.commandDelegate evalJs:@"try{window.Eve.APP().onPause();}{catch(e){}"];
+    } else if (interruptionType == AVAudioSessionInterruptionTypeEnded) {
+        if ([notification.userInfo[AVAudioSessionInterruptionOptionKey] intValue] == AVAudioSessionInterruptionOptionShouldResume) {
+         [self.commandDelegate evalJs:@"try{window.Eve.APP().onResume();}{catch(e){}"];
+        }        
+    }
 }
 
 @end
