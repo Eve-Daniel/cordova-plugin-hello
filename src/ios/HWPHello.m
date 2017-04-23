@@ -35,6 +35,7 @@
     if (interruptionType == AVAudioSessionInterruptionTypeBegan) {
          [self.commandDelegate evalJs:@"try{window.Eve.APP().onPause();}catch(e){alert(e.message);}"];
     } else if (interruptionType == AVAudioSessionInterruptionTypeEnded) {
+         [self.commandDelegate evalJs:@"try{window.Eve.APP().xxResume();}catch(e){alert(e.message);}"];
         if ([notification.userInfo[AVAudioSessionInterruptionOptionKey] intValue] == AVAudioSessionInterruptionOptionShouldResume) {
          [self.commandDelegate evalJs:@"try{window.Eve.APP().onResume();}catch(e){alert(e.message);}"];
         }        
