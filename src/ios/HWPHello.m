@@ -13,15 +13,22 @@
                                messageAsString:msg];
 
     [self.commandDelegate evalJs:@"alert('aaapjpjpjpj')"];
+    [self observeLifeCycle];
     [self.commandDelegate sendPluginResult:result callbackId:command.callbackId];
     
 }
 
-- (void) pluginInitialize
+- (void) observeLifeCycle
 {
-    
-    //[self observeLifeCycle];
-    [self.commandDelegate evalJs:@"alert('fooooo')"];
+    NSNotificationCenter* listener = [NSNotificationCenter
+                                      defaultCenter];
+
+        [listener addObserver:self
+                     selector:@selector(handleAudioSessionInterruption:)
+                         name:AVAudioSessionInterruptionNotification
+                       object:nil];
+             
+    [self.commandDelegate evalJs:@"alert('foo-install')"];
 }
 
 @end
