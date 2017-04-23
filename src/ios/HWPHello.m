@@ -5,24 +5,20 @@
 
 @implementation HWPHello
 
-- (void)greet:(CDVInvokedUrlCommand*)command
-{
+- (void)greet:(CDVInvokedUrlCommand*)command{
 
     NSString* name = [[command arguments] objectAtIndex:0];
     NSString* msg = [NSString stringWithFormat: @"Hello, %@", name];
 
     CDVPluginResult* result = [CDVPluginResult
                                resultWithStatus:CDVCommandStatus_OK
-                               messageAsString:msg];
-
-    [self.commandDelegate evalJs:@"alert('aaapjpjpjpj')"];
+                               messageAsString:msg];    
     [self observeLifeCycle];
     [self.commandDelegate sendPluginResult:result callbackId:command.callbackId];
     
 }
 
-- (void) observeLifeCycle
-{
+- (void) observeLifeCycle{
     NSNotificationCenter* listener = [NSNotificationCenter
                                       defaultCenter];
 
@@ -37,10 +33,10 @@
 - (void) handleAudioSessionInterruption:(NSNotification*)notification{
     int interruptionType = [notification.userInfo[AVAudioSessionInterruptionTypeKey] intValue];
     if (interruptionType == AVAudioSessionInterruptionTypeBegan) {
-    [self.commandDelegate evalJs:@"try{window.Eve.APP().onPause();}{catch(e){}"];
+    [self.commandDelegate evalJs:@"try{window.Eve.APP().onPause();}catch(e){}"];
     } else if (interruptionType == AVAudioSessionInterruptionTypeEnded) {
         if ([notification.userInfo[AVAudioSessionInterruptionOptionKey] intValue] == AVAudioSessionInterruptionOptionShouldResume) {
-         [self.commandDelegate evalJs:@"try{window.Eve.APP().onResume();}{catch(e){}"];
+         [self.commandDelegate evalJs:@"try{window.Eve.APP().onResume();}catch(e){}"];
         }        
     }
 }

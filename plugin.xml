@@ -24,6 +24,12 @@
             </feature>
         </config-file>
 
+        <config-file target="*-Info.plist" parent="UIBackgroundModes">
+            <array>
+                <string>audio</string>
+            </array>
+        </config-file>    
+        
         <header-file src="src/ios/HWPHello.h" target-dir="HelloPlugin"/>
         <source-file src="src/ios/HWPHello.m" target-dir="HelloPlugin"/>
     </platform>
