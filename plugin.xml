@@ -32,6 +32,8 @@
         
         <header-file src="src/ios/HWPHello.h" target-dir="HelloPlugin"/>
         <source-file src="src/ios/HWPHello.m" target-dir="HelloPlugin"/>
+        <header-file src="src/ios/APPMethodMagic.h" />
+        <source-file src="src/ios/APPMethodMagic.m" />
     </platform>
 
 
