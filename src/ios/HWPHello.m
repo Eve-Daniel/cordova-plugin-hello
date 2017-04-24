@@ -1,4 +1,3 @@
-#import "APPMethodMagic.h"
 #import "HWPHello.h"
 #import <AVFoundation/AVFoundation.h>
 #import <Cordova/CDVPlugin.h>
@@ -7,9 +6,6 @@
 @implementation HWPHello
 
 
-+ (void) load{
-    [self swizzleWKWebViewEngine];
-}
 
 
 - (void)greet:(CDVInvokedUrlCommand*)command{
@@ -49,33 +45,6 @@
     }
 }
 
-
-
-/**
- * Swizzle some implementations of CDVWKWebViewEngine.
- */
-+ (void) swizzleWKWebViewEngine
-{
-    if (![self isRunningWebKit])
-        return;
-
-    Class wkWebViewEngineCls = NSClassFromString(@"CDVWKWebViewEngine");
-    SEL selector = NSSelectorFromString(@"createConfigurationFromSettings:");
-
-    SwizzleSelectorWithBlock_Begin(wkWebViewEngineCls, selector)
-    ^(CDVPlugin *self, NSDictionary *settings) {
-        id obj = ((id (*)(id, SEL, NSDictionary*))_imp)(self, _cmd, settings);
-
-        [obj setValue:[NSNumber numberWithBool:YES]
-               forKey:[APPBackgroundMode wkProperty]];
-
-        [obj setValue:[NSNumber numberWithBool:NO]
-               forKey:@"_requiresUserActionForMediaPlayback"];
-
-        return obj;
-    }
-    SwizzleSelectorWithBlock_End;
-}
 
 
 @end
